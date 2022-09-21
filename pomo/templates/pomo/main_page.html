@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'pomo/styles.css' %}">
+        <link rel="icon" href="{% static 'pomo/images/favicon-16x16.png' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>pomme dorée</title> <!-- or "pomme d'or" -->
+        
+        
+    </head>
+
+    <body class="body">
+        <header>
+            <!-- Navbar and menu -->
+            <div class="site-title">
+                <img class="pomme-doree-img" src="{% static 'pomo/images/pomme_doree.png' %}" alt="la pomme dorée"/>
+                <h1 class="pomme-doree-h1">pomme dorée</h1>
+            </div>
+        </header>
+        
+
+        <!-- Next up is the main div. This div includes the counter and the buttons -->
+            <main id="main-div" class="main-page-panel">
+                <div class="main-page-block main-page-panel-left">
+                    <!-- Counter div. To the left of the screen -->
+                    <div class="counter-div">
+                        <p id="counter-minutes" class="counter-minutes"></p>
+                        <p class="counter-minutes">min</p>
+                    </div>
+                    <div class="counter-div">
+                        <p id="counter-seconds" class="counter-seconds"></p>
+                        <p class="counter-seconds">s</p>
+                    </div>
+                </div>
+                <div class="main-page-block main-page-panel-right">
+                    <!-- Buttons div. To the right -->
+                    <div id="button-settings" class="button-div not-visible">Settings</div>
+                    <div id="button-play" class="button-div not-visible">Play</div>
+                    <div id="button-pause" class="button-div not-visible">Pause</div>
+                    <div id="button-skip" class="button-div not-visible">Skip</div>
+                    <div id="button-stop" class="button-div not-visible">Stop</div>
+                </div>
+            </main>
+
+            <!-- In these settings, the user will be able to input the 
+                how many pomodoros to have and their length too -->
+            <div id="settings-popup-window" class="settings-popup-window">
+                <div class="settings-popup">
+                    <div class="settings-form" id="settings-form">
+                        <h3>Settings</h3>
+                        <div class="settings-form-input">
+                            <p>Session time</p>
+                            <input type="text" id="session-time" name="session-time">
+                        </div>
+                        <div class="settings-form-input">
+                            <p>Number of sessions</p>
+                            <input type="text" id="sessions-number" name="sessions-number">
+                        </div>
+    
+                        <div class="form-buttons-div">
+                            <div id="button-cancel" class="form-button-div form-button-cancel">Cancel</div>
+                            <div id="button-ok" class="form-button-div form-button-ok">Ok</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+
+    <!-- Importing the jQuery library here for preconfiguration
+        and importing the main JS files at the end -->
+    <script src="{% static 'pomo/jquery.js' %}"></script>
+    <script src="{% static 'pomo/main.js' %}"></script>
+</html>

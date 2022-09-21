@@ -1,0 +1,182 @@
+.body{
+    /* height: 100vh; */
+    margin-top: 0px;
+    background-color: darkviolet;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Title region: image, title text */
+.site-title{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+
+.pomme-doree-img{
+    display: flex;
+    height: 5em;
+}
+
+.pomme-doree-h1{
+    display: flex;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    align-items: center;
+
+    margin-left: 0.2em;
+
+    color: gold;
+    font-size: 3em;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    background: -webkit-linear-gradient(#eee, rgb(255 215 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
+/* Main panel region: counter, buttons */
+.main-page-panel{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.main-page-panel-blur{
+    filter: blur(5px); /* Blurring the background when settings is opened up */
+}
+
+.main-page-block{
+    align-items: center;
+}
+
+.main-page-panel-left{
+    display: flex;
+    flex-direction: column;
+}
+
+.counter-div{
+    display: flex;
+    flex-direction: row;
+    color:snow;
+}
+
+#counter-minutes.counter-minutes, #counter-seconds.counter-seconds{
+    margin-right: 0.4em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+p.counter-minutes, p.counter-seconds{
+    margin: 0px;
+}
+
+.counter-minutes.counter-minutes{
+    font-size: 2.5em;
+}
+
+.counter-seconds.counter-seconds{
+    font-size: 2em;
+}
+
+
+.main-page-panel-right{
+
+}
+
+.button-div{
+    height: 4em;
+    width: 4em;
+    background-color: indigo;
+    border-style: solid;
+    border-width: 0.125em;
+    border-color: snow;
+    color: snow;
+    
+    margin-bottom: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-div:hover{
+    background-color: darkviolet;    
+}
+
+
+
+
+/* Settings popup */
+.settings-popup-window{
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 8;
+    width: 100vw;
+}
+
+.settings-popup{
+    position: relative;
+    width: 100%;
+}
+
+.settings-form{
+    /* margin-right: 25%; */
+    /* margin-left: 25%; */
+    display: block; /* Initially hidden */
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #999999;
+    z-index: 9;
+
+    max-width: 300px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.form-buttons-div{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-button-div{
+    height: 2rem;
+    width: 5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-button-cancel{
+    background-color: darkred;
+    color: snow;
+    font-weight: bolder;
+}
+.form-button-cancel:hover{
+    background-color: red;
+}
+
+.form-button-ok{
+    background-color: indigo;
+    color: snow;
+    font-weight: bolder;
+}
+.form-button-ok:hover{
+    background-color:royalblue;
+}
