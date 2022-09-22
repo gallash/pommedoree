@@ -15,6 +15,10 @@
     margin-bottom: 4em;
 }
 
+.site-title-anchor{
+    text-decoration: none;
+}
+
 .pomme-doree-img{
     display: flex;
     height: 5em;
@@ -48,6 +52,7 @@
     display: flex;
     justify-content: space-evenly;
 }
+
 
 .main-page-panel-blur{
     filter: blur(5px); /* Blurring the background when settings is opened up */
@@ -105,6 +110,8 @@ p.counter-minutes, p.counter-seconds{
     display: flex;
     align-items: center;
     justify-content: center;
+
+    cursor: pointer;
 }
 
 .button-div:hover{
@@ -115,6 +122,10 @@ p.counter-minutes, p.counter-seconds{
 
 
 /* Settings popup */
+.hide-settings-popup{
+    display: none;
+}
+
 .settings-popup-window{
     /* display: none; */
     position: fixed;
@@ -161,6 +172,8 @@ p.counter-minutes, p.counter-seconds{
     display: flex;
     align-items: center;
     justify-content: center;
+
+    cursor: pointer;
 }
 
 .form-button-cancel{
@@ -180,3 +193,18 @@ p.counter-minutes, p.counter-seconds{
 .form-button-ok:hover{
     background-color:royalblue;
 }
+
+
+
+/* About Page */
+.about-page-panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.h2-text{
+    color: snow;
+}
+
+.about-page-p-text{}

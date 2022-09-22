@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'pomo/styles.css' %}">
+        <link rel="icon" href="{% static 'pomo/images/favicon-16x16.png' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>pomme dorée</title> <!-- or "pomme d'or" -->
+        
+        
+    </head>
+
+    <body class="body">
+        <header>
+            <!-- Navbar and menu -->
+            <a href="{% url 'main-page' %}" class="site-title-anchor">
+                <div class="site-title">
+                    <img class="pomme-doree-img" src="{% static 'pomo/images/pomme_doree.png' %}" alt="la pomme dorée"/>
+                    <h1 class="pomme-doree-h1">pomme dorée</h1>
+                </div>
+            </a>
+        </header>
+        
+        <main id="main-div" class="about-page-panel">
+            <h2 class="h2-text">Pomme dorée!! Wait, isn't it 'pomodoro' though?</h2>
+            <p class="about-page-p-text">
+                So, yes, 'pomodoro' literally means 'tomato' in Italian. However, what fun is it 
+                to build a website for this technique of spaced, timed sessions of focus without a, 
+                presumably, witty word play?
+
+                As I, Phillip Gallas, also speak french among other languages, 
+                I swear I am not trying to flex, (il faut que je dis plutôt que je suis en train
+                d'apprendre la langue encore), I decided to search for a mixture of words that sound
+                similar, hence 'la pomme dorée', the golden apple, came to be!
+
+                I also like playing Minecraft sometimes, and the golden apple in the game came in 
+                handy for the logo.
+
+                <strong>And how to use the website?</strong>
+
+                
+            </p>
+        </main>
+
+    </body>
+
+</html>

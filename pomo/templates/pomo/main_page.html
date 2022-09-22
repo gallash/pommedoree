@@ -14,10 +14,12 @@
     <body class="body">
         <header>
             <!-- Navbar and menu -->
-            <div class="site-title">
-                <img class="pomme-doree-img" src="{% static 'pomo/images/pomme_doree.png' %}" alt="la pomme dorée"/>
-                <h1 class="pomme-doree-h1">pomme dorée</h1>
-            </div>
+            <a href="{% url 'about-page' %}" class="site-title-anchor">
+                <div class="site-title">
+                    <img class="pomme-doree-img" src="{% static 'pomo/images/pomme_doree.png' %}" alt="la pomme dorée"/>
+                    <h1 class="pomme-doree-h1">pomme dorée</h1>
+                </div>
+            </a>
         </header>
         
 
@@ -46,7 +48,7 @@
 
             <!-- In these settings, the user will be able to input the 
                 how many pomodoros to have and their length too -->
-            <div id="settings-popup-window" class="settings-popup-window">
+            <div id="settings-popup-window" class="settings-popup-window hide-settings-popup">
                 <div class="settings-popup">
                     <div class="settings-form" id="settings-form">
                         <h3>Settings</h3>

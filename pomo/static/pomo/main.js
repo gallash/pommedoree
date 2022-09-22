@@ -10,11 +10,26 @@
 // https://www.youtube.com/watch?v=eVKRRTPCCnc
 
 $(document).ready(function(){
-    $("#settings-popup-window").hide();
+    // $("#settings-popup-window").hide();
 
     showIdleButtons();
     setTimerSettings(sessionMinutes);
 });
+
+
+// System variables
+let repetitions = 3;
+let breakMinutes = 10;
+const minuteToSeconds = 60; // Used as a constant
+var sessionMinutes = 1;
+let sessionTime = sessionMinutes*minuteToSeconds;
+let actionsList = []; // e.g., {1:{'short_break:10', 'session_minutes':15}}, ...
+var minutes = 0;
+var seconds = 0;
+var pauseSessionTime = 0; // Used when Pause is clicked
+
+
+
 
 $("#button-play").on("click", function(){
     showPlayButtons();
@@ -22,16 +37,12 @@ $("#button-play").on("click", function(){
 });
 
 $("#button-settings").on("click", function(){
-    //https://www.w3docs.com/tools/code-editor/12095
-    //https://www.w3docs.com/snippets/javascript/how-to-create-a-popup-form-using-javascript.html
-    //https://www.freecodecamp.org/news/css-unit-guide/
-    //https://stackoverflow.com/questions/44327854/disable-everything-in-background-while-a-popup-is-open
-
     // Blur the background
     $("#main-div").addClass("main-page-panel-blur");
 
     // Call the settings popup
-    $("#settings-popup-window").show();
+    // $("#settings-popup-window").show();
+    $("#settings-popup-window").removeClass("hide-settings-popup")
 });
 
 $("#button-ok").on("click", function(){
@@ -46,18 +57,6 @@ $("#button-ok").on("click", function(){
 $("#button-cancel").on("click", function(){
     closeSettingsPopup();
 });
-
-
-
-let repetitions = 3;
-let breakMinutes = 10;
-var firstTime = true; /* Checks whether the manageTimer was already run or not */
-var minuteToSeconds = 60;
-var sessionMinutes = 1;
-let sessionTime = sessionMinutes*minuteToSeconds;
-let actionsList = []; // e.g., {1:{'short_break:10', 'session_minutes':15}}, ...
-var minutes = 0;
-var seconds = 0;
 
 
 function showIdleButtons(){
@@ -78,7 +77,8 @@ function showPlayButtons(){
 
 function closeSettingsPopup(){
     // Close the window
-    $("#settings-popup-window").hide();
+    // $("#settings-popup-window").hide();
+    $("#settings-popup-window").addClass("hide-settings-popup");
     
     // Remove blur
     $("#main-div").removeClass("main-page-panel-blur");
@@ -98,10 +98,12 @@ function setTimerSettings(sessionMinutes){
 }
 
 function manageTimer(sessionTime){
+    if (pauseSessionTime !== 0){
+        // This would mean that the pause button was clicked
+        sessionTime = pauseSessionTime;
+    }
+
     let timerId = setInterval(function(){
-        // The user can't pause the system, it wouldn't make much sense, as he or she 
-        // could stop the timer indefinitely.
-        // The user can, however, stop the timer
         $("#button-stop").on("click", function(){
             showIdleButtons();
             setTimerSettings(sessionMinutes);
@@ -109,13 +111,23 @@ function manageTimer(sessionTime){
         });
         
 
+        $("#button-pause").on("click", function(){
+            // Hides Pause button and shows Play button
+            $("#button-pause").hide();
+            $("#button-play").show();
+
+            // Stop the timer from counting
+            pauseSessionTime = sessionTime;
+            clearInterval(timerId);
+        });
+
+
         // Normal flow of time
         if (sessionTime > 0){
             sessionTime--;
             
             minutes = Math.floor(sessionTime/minuteToSeconds);
             seconds = sessionTime - minutes*minuteToSeconds;
-            console.log(minutes + "min " + seconds + "s");
 
             $('#counter-minutes').text(minutes);
             $('#counter-seconds').text(seconds);
@@ -124,8 +136,7 @@ function manageTimer(sessionTime){
             // Rings the bell and skips to the next thing in line (actionsList)
             showIdleButtons();
             clearInterval(timerId);
+            pauseSessionTime = 0; // For good measure
         }
-
-
-    },1000);   
+    },1000);
 }
