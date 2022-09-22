@@ -21,16 +21,18 @@ $(document).ready(function(){
 let repetitions = 3;
 let breakMinutes = 10;
 const minuteToSeconds = 60; // Used as a constant
-var sessionMinutes = 1;
-let sessionTime = sessionMinutes*minuteToSeconds;
+var sessionMinutes = 5;
+let sessionTime = getSessionTime(sessionMinutes);
+let sessionsNumber = 2;
 let actionsList = []; // e.g., {1:{'short_break:10', 'session_minutes':15}}, ...
 var minutes = 0;
 var seconds = 0;
 var pauseSessionTime = 0; // Used when Pause is clicked
+var stopButtonClicked = false;
 
 
 
-
+// Actions of the buttons
 $("#button-play").on("click", function(){
     showPlayButtons();
     manageTimer(sessionTime);
@@ -47,10 +49,19 @@ $("#button-settings").on("click", function(){
 
 $("#button-ok").on("click", function(){
     // Check whether the data input is valid
-    // Constraints: session time [up to 60min, integer], sessions number [up to 8, integer]
-
-    // Apply the changes to the variables if data is valid
+    // Constraints: 
+    //  session time [min 5min, up to 60min, integer]
+    //  sessions number [min 2, up to 8, integer]
     
+    // Add visuals for when the input does not hold up
+    
+    // Apply the changes to the variables if data is valid
+    sessionMinutes = parseInt($("#session-time").val())
+    sessionTime = getSessionTime(sessionMinutes);
+    sessionsNumber = parseInt($("#sessions-number").val());
+    
+    // Update the counter on the screen and close the popup
+    setTimerSettings(sessionMinutes);
     closeSettingsPopup();
 });
 
@@ -58,6 +69,12 @@ $("#button-cancel").on("click", function(){
     closeSettingsPopup();
 });
 
+
+
+// Functions
+function getSessionTime(sessionMinutes){
+    return sessionMinutes*minuteToSeconds
+};
 
 function showIdleButtons(){
     $("#button-play").show();
@@ -84,10 +101,6 @@ function closeSettingsPopup(){
     $("#main-div").removeClass("main-page-panel-blur");
 }
 
-function setCustomSettings(){
-
-}
-
 function setTimerSettings(sessionMinutes){
    // Called each time a new timer is started
     minutes = sessionMinutes;
@@ -97,17 +110,36 @@ function setTimerSettings(sessionMinutes){
     $('#counter-seconds').text(seconds);
 }
 
+function skipPomme(){
+    // Skips to the next pomodoro (pomme), if there is any left
+    if (pommeCounter<sessionsNumber){
+        // Set the interval between pomodoros (pommes)
+        // Also set the function of a button to skip this interval
+    }else{
+        // End pomodoro
+        sessionTime = 0;
+    }
+}
+
 function manageTimer(sessionTime){
     if (pauseSessionTime !== 0){
         // This would mean that the pause button was clicked
         sessionTime = pauseSessionTime;
     }
 
+    if(stopButtonClicked===true){
+        // If stop was clicked, then resets the whole thing
+        // to the time set by the user
+        sessionTime = getSessionTime(sessionMinutes);
+        stopButtonClicked = false;
+    }
+    
     let timerId = setInterval(function(){
         $("#button-stop").on("click", function(){
             showIdleButtons();
             setTimerSettings(sessionMinutes);
             sessionTime = 0; // Inducing the code to finish counting
+            stopButtonClicked = true; 
         });
         
 
